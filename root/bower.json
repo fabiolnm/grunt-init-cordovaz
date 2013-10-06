@@ -1,0 +1,6 @@
+{
+    "name": "{%= name %}",
+    "dependencies": {
+        "jquery-mobile-bower": "1.3.2"
+    }
+}

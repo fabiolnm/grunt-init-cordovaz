@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="{%= package %}" version="{%= version %}" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://cordova.apache.org/ns/1.0">
+  <name>{%= name %}</name>
+  <description>{%= description %}</description>
+  <author email="{%= author_email %}">{%= author_name %}</author>
+  <content src="index.html" />
+  <access origin="*" />
+  <preference name="fullscreen" value="true" />
+  <preference name="webviewbounce" value="true" />
+</widget>
