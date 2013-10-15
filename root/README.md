@@ -44,7 +44,7 @@ Note: you must restart grunt watch when Gruntfile is changed
 open www/index.html
 ```
 
-### Deploy application to a device
+### Emulate application
 Read carefully the
 
 [Platform Guide](http://cordova.apache.org/docs/en/3.1.0/guide_platforms_index.md.html#Platform%20Guides)
@@ -72,6 +72,24 @@ and so on...
 
 Learn more cordova commands at
 [Cordova-CLI docs](http://cordova.apache.org/docs/en/3.1.0/guide_cli_index.md.html#The%20Command-line%20Interface)
+
+### Release application
+#### Android
+In order to release an Android APK, it must be [signed and zipaligned](http://developer.android.com/tools/publishing/app-signing.html).
+First, a private key must be generated to the application and stored in a Keystore:
+```
+keytool -genkey -v -keystore /path/to/my/.keystore -alias {%= name %} -keyalg RSA -keysize 2048
+```
+and the environment variables must be configured:
+```
+export KEYSTORE_DIR=/path/to/my/.keystore
+export KEYSTORE_PASS=my_keystore_password
+```
+then, execute
+```
+grunt exec:release_android
+```
+to sign and zipalign the apk, generating the release package ```platforms/android/bin/{%= name %}.apk```.
 
 ## License
 Copyright (c) {%= grunt.template.today('yyyy') %} {%= author_name %}

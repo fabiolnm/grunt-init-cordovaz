@@ -53,6 +53,7 @@ exports.template = function(grunt, init, done) {
     props['devDependencies'] = {
       "bower": "~1.2.7",
       "grunt": "~0.4.1",
+      "grunt-exec":           "~0.4.2",
       "grunt-contrib-concat": "~0.3.0",
       "grunt-contrib-watch":  "~0.5.3",
       "grunt-sync":           "~0.0.4",

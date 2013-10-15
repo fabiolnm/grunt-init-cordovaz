@@ -63,6 +63,15 @@ module.exports = (grunt) ->
       sync:
         files: ['src/img/**', 'src/res/**', 'src/*.xml', 'src/*.html']
         tasks: 'sync'
+    exec:
+      release_android:
+        command: [
+         'cordova build --release android',
+         "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1
+          -keystore #{process.env.KEYSTORE_DIR} -storepass #{process.env.KEYSTORE_PASS}
+          platforms/android/bin/{%= name %}-release-unsigned.apk {%= name %}"
+          'zipalign -v 4 platforms/android/bin/{%= name %}-release-unsigned.apk platforms/android/bin/{%= name %}.apk'
+        ].join '&&'
 
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-watch'
@@ -70,6 +79,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-jasmine'
+  grunt.loadNpmTasks 'grunt-exec'
 
   # Default task(s).
   grunt.registerTask 'default', ['coffee', 'sass', 'concat', 'sync', 'jasmine', 'watch']
